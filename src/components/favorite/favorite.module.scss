@@ -1,4 +1,10 @@
 .root {
   flex-grow: 1;
   flex-shrink: 1;
+  color: #777;
+  background-color: #1a171e;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

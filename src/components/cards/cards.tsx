@@ -1,9 +1,19 @@
 import styles from './cards.module.scss';
 import classNames from 'classnames';
 import { Card } from '../card/card';
+import { useState, useEffect } from 'react';
 
 export interface CardsProps {
     className?: string;
+}
+
+export interface Movie {
+    id: number;
+    poster_path?: string;
+    title: string;
+    overview: string;
+    vote_average: number;
+    release_date: string;
 }
 
 /**
@@ -11,16 +21,22 @@ export interface CardsProps {
  * To create custom component templates, see https://help.codux.com/kb/en/article/configuration-for-cardss-and-templates
  */
 export const Cards = ({ className }: CardsProps) => {
+    const [movies, setMovies] = useState<Movie[]>([]);
+
+    useEffect(() => {
+        fetch(
+            'https://api.themoviedb.org/3/discover/movie/?api_key=8a3843e9deb8b95c5b45ed9a63fd7cd3'
+        )
+            .then((response) => response.json())
+            .then((data) => setMovies(data.results))
+            .catch((err) => console.log(err));
+    }, []);
+
     return (
         <div className={classNames(styles.root, className)}>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {movies.map((movie) => (
+                <Card key={movie.id} movie={movie} />
+            ))}
         </div>
     );
 };

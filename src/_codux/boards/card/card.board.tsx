@@ -6,7 +6,7 @@ export default createBoard({
     Board: () => (
         <Card
             movie={{
-                id: '123',
+                id: 123,
                 overview:
                     'Kazakh TV talking head Borat is dispatched to the United States to report on the greatest country in the world. With a documentary crew in tow, Borat becomes more interested in locating and marrying Pamela Anderson.',
                 release_date: '10/22/1999',
